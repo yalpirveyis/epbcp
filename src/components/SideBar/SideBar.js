@@ -17,6 +17,34 @@ export default function SideBar({ setIsOpen, isOpen }) {
   const handleClick = () => {
     setOpen(!open);
   };
+  const menuList = [
+    {
+      id: 1,
+      name: "Tablo Tasarımı",
+      icon: "Table",
+      subItem: [
+        { id: 2, name: "Tablo ekle", icon: "Table add" },
+        { id: 3, name: "Tablo Güncelle", icon: "Table update" },
+      ],
+    },
+    {
+      id: 1,
+      name: "Tablo Tasarımı",
+      icon: "Table",
+      subItem: [
+        { id: 2, name: "Tablo ekle", icon: "Table add" },
+        {
+          id: 3,
+          name: "Tablo Güncelle",
+          icon: "Table update",
+          subItem: [
+            { id: 2, name: "Tablo ekle", icon: "Table add" },
+            { id: 3, name: "Tablo Güncelle", icon: "Table update" },
+          ],
+        },
+      ],
+    },
+  ];
   return (
     <div
       style={{
@@ -45,18 +73,15 @@ export default function SideBar({ setIsOpen, isOpen }) {
           </ListSubheader>
         }
       >
-        <ListItemButton>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Veritabanı Paketi Tanımla" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Veritabanı Paketi Gönder" />
-        </ListItemButton>
+        {menuList.map((item) => (
+          <ListItemButton>
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText primary={item.name} />
+          </ListItemButton>
+        ))}
+
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
             <InboxIcon />
@@ -70,47 +95,7 @@ export default function SideBar({ setIsOpen, isOpen }) {
               <ListItemIcon>
                 <StarBorder />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItemButton>
-          </List>
-        </Collapse>
-      </List>
-      <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Uygulama Paketi
-          </ListSubheader>
-        }
-      >
-        <ListItemButton>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sent mail" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
-        </ListItemButton>
-        <ListItemButton onClick={handleClick}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary="Test" />
             </ListItemButton>
           </List>
         </Collapse>
